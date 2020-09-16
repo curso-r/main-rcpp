@@ -25,8 +25,9 @@ class: middle, center, inverse
 ## Nesse curso vamos falar de
 
 - Diferenças entre R e C++
-- Quando usar C++?
-- Introdução ao {Rcpp}
+- O que é {Rcpp}?
+- Quando usar {Rcpp}?
+- Introdução ao {Rcpp}?
 - Usando matrizes e arrays
 - Outros tipos de objetos do R no C++
 - Ponteiros externos (XPtrs)
@@ -118,6 +119,45 @@ hello("world")
 ```
 
 ]
+
+---
+
+## Rcpp
+
+- O R é escrito principalmente em C (não é C++) e então o R possui uma API em C
+que permite que você crie extensões.
+
+- A API do R é difícil e exige que você conheça bastante detalhes da linguagem.
+Além disso, você precisa entender bastante como funciona o *garbage collector*
+para poder usar corretamente a API em C.
+
+- Rcpp não apenas implementa uma forma de chamar funções do C++ a partir da API
+do R que é escrita em C, como fornece um conjunto grande de *açúcar sintático* 
+para você não precisar entender tantos detalhes da API C do R.
+
+- O pacote Rcpp é um dos mais utilizados no CRAN e é atualmente a principal
+ferramenta para criar extensões do R que utilizam C/C++
+
+---
+
+## Quando usar Rcpp?
+
+Existem dois principais motivos para usar Rcpp:
+
+1. Você um código lento em R (geralmente envolvendo loops) que não é trivial de
+vetorizar. Seu objetivo então, é escrever esse código em C++ para se beneficiar 
+da velocidade, sem necessariamente precisar mudar o algoritmo.
+
+Essa é talvez a forma mais comum de se usar Rcpp. Você escreve seu código em R,
+e otimiza as partes que são *funis* de performance em C++. Pacotes como {text2vec},
+{ranger}, {tm} e versões anteriores do {dplyr} usam Rcpp desta forma.
+
+2. Você deseja usar, pelo R, uma biblioteca já consolidada escrita em C++. 
+Por exemplo, a [libmagick]() é uma biblioteca escrita em C++ que possui diversas
+funções para manipulação de imagens - ao invés de re-escrever a sua funcionalidade
+em R, usamos Rcpp para *conectá-la* ao R.
+
+Pacotes como {magick}, {hunspell}, {haven}, {opencv} e etc. usam Rcpp desta forma. 
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
