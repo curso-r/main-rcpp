@@ -1,0 +1,119 @@
+---
+title: "R e C++"
+author: "Daniel Falbel"
+institute: "Curso-R"
+date: "2020-10"
+output:
+  xaringan::moon_reader:
+    css: ["default", "theme.css"]
+    lib_dir: libs
+    seal: false
+    nature:
+      beforeInit: "macro.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+---
+
+class: middle, center, inverse
+
+# R e C++
+
+### Curso-R
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, echo = FALSE, 
+                      dpi = 96, fig.height = 4.7, 
+                      fig.width = 10, fig.retina = 3)
+library(tidyverse)
+```
+
+---
+
+## Nesse curso vamos falar de
+
+- Diferenças entre R e C++
+- Quando usar C++?
+- Introdução ao {Rcpp}
+- Usando matrizes e arrays
+- Outros tipos de objetos do R no C++
+- Ponteiros externos (XPtrs)
+- Pacotes com código C++
+- Um pouco sobre a API do R em C
+- Introdução ao `{cpp11}` 
+
+---
+
+## Diferenças entre R e C++
+
+- As duas linguagens tem propósitos bastante diferentes. O R é uma linguagem focada em análise de dados e tem bastante desenvolvimento pensado na interatividade. 
+
+- C++ é uma linguagem de mais baixo nível e tem foco em performance e proximidade com a linguagem de máquina. É uma linguagem de propósito muito mais geral.
+
+- Apesar de as duas linguagens possuirem muitos paradigmas diferentes. R tende a ser uma linguagem funcional: em geral escrevemos o que queremos fazer e não o 'como fazer'. C++ é imperativa, o que implica em escrever exatamente o 'como fazer'.
+
+Dito isso, as principais diferenças que precisam ser compreendidas por um programador R aprendendo C++ são:
+
+
+---
+
+## Diferenças entre R e C++
+
+.pull-left[
+
+### R
+
+- **interpretada**: existe um interpretador que *parseia* o código e o executa. Esse processo ocorre toda vez que uma linha de código é executada.
+
+- **tipada dinamicamente**: os tipos dos objetos só são verificados na hora da execução do código.
+
+]
+
+.pull-right[
+
+### C++
+
+- **(pré) compilada**: o código é compilado, isto é, transformado em linguagem de máquina e depois pode ser executado. Não é necessário nenhum interpretador para executar o código.
+
+- **estaticamente tipada**: durante o processo de compilação verifica-se se os tipos estão corretos. Por exemplo: uma função que retorna um número inteiro só pode retornar um número inteiro.
+
+
+]
+
+---
+
+## Diferenças entre R e C++
+
+Além de todas as diferenças conceituais, é claro, as duas linguagens também diferem bastante com relação à sintaxe.
+
+.pull-left[
+
+```{r, echo = TRUE}
+hello <- function(name) {
+  print(paste("hello", name))
+}
+hello("world")
+```
+
+]
+
+.pull-right[
+
+```{Rcpp, echo = TRUE}
+#include <Rcpp.h>
+// [[Rcpp::export]]
+void hello (std::string name)
+{
+  Rcpp::Rcout << 
+    "hello " + name << 
+      std::endl;
+}
+```
+
+```{r, echo = TRUE}
+hello("world")
+```
+
+]
+
