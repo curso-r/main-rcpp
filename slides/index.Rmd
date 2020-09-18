@@ -63,6 +63,28 @@ library(tidyverse)
 
 ---
 
+## Outros materiais
+
+.pull-left[
+
+- [Rcpp gallery](https://gallery.rcpp.org/)
+- [Paper do Rcpp no JSS](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-jss-2011.pdf)
+- [FAQ do Rcpp](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-FAQ.pdf)
+- [Referência rápida](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-quickref.pdf)
+- [Capítulo do Advanced R](https://adv-r.hadley.nz/rcpp.html)
+- [Rcpp book](https://teuder.github.io/rcpp4everyone_en/)
+- [Curso na UseR 2020](https://www.youtube.com/watch?v=57H34Njrns4)
+
+]
+
+.pull-right[
+
+[![:scale 55%](img/seamless.png)](http://www.rcpp.org/book/)
+
+]
+
+---
+
 ## Diferenças entre R e C++
 
 - As duas linguagens tem propósitos bastante diferentes. O R é uma linguagem focada em análise de dados e tem bastante desenvolvimento pensado na interatividade. 
