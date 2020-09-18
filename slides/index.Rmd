@@ -18,9 +18,9 @@ output:
 
 class: middle, center, inverse
 
-# R e C++
+# Acelerando o R com C++
 
-### Curso-R
+![:scale 50%](img/cursor1-5.png)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(eval = TRUE, echo = FALSE, 
@@ -33,16 +33,33 @@ library(tidyverse)
 
 ## Nesse curso vamos falar de
 
+.pull-left[
+
+### Introdução
+
 - Diferenças entre R e C++
 - O que é {Rcpp}?
 - Quando usar {Rcpp}?
-- Introdução ao {Rcpp}?
+- Introdução ao {Rcpp}
+
+### Intermediário
+
 - Usando matrizes e arrays
-- Outros tipos de objetos do R no C++
+- Como interromper loops pelo R
+- Casos de uso
 - Ponteiros externos (XPtrs)
+
+]
+
+.pull-right[
+
+### Miscelânea
+
 - Pacotes com código C++
 - Um pouco sobre a API do R em C
 - Introdução ao `{cpp11}` 
+
+]
 
 ---
 
@@ -156,4 +173,73 @@ funções para manipulação de imagens - ao invés de re-escrever a sua funcion
 em R, usamos Rcpp para *conectá-la* ao R.
 
 Pacotes como {magick}, {hunspell}, {haven}, {opencv} e etc. usam Rcpp desta forma. 
+
+---
+
+## Ambiente de desenvolvimento
+
+.pull-left[
+
+### Linux 
+
+- Instalar o `r-base-dev`: rodar `sudo apt-get install r-base-dev`.
+
+### Mac
+
+- Instalar o Xcode Command Line Tools. Rodar: `xcode-select --install` no terminal.
+
+]
+
+.pull-right[
+
+### Windows
+
+- Instalar o [RTools](https://cran.r-project.org/bin/windows/Rtools/history.html): o RTools junta um compilador (MinGW) de código C++, um compilador de Latex e outras ferramentas úteis.
+
+]
+
+---
+
+## Introdução ao Rcpp
+
+O esquema abaixo apresenta o esqueleto de uma função C++:
+
+.center[
+![](img/Screen Shot 2020-09-18 at 14.34.56.png)
+
+Fonte: [*Extending R with C++: A Brief Introduction to Rcpp*](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-introduction.pdf)
+]
+
+---
+
+## RMarkdown & Rcpp
+
+O RMarkdown é uma ferramenta legal para começar a aprender Rcpp, pela facilidade de programar nas duas linguagens.
+
+.pull-left[
+
+- na primeira parte do curso vamos usar o RMarkdown e quando usarmos
+  pacotes vamos programar em arquivos separados.
+  
+- é possível usar a função `Rcpp::cppFunction()` para escrever os
+  códigos em scripts `.R`.
+
+]
+
+.pull-right[
+
+![:scale 60%](img/Screen Shot 2020-09-18 at 15.05.14.png)
+
+]
+
+---
+class: middle, center
+
+### Exemplo 1
+
+---
+
+class: middle, center
+
+### Exercício 1
 
