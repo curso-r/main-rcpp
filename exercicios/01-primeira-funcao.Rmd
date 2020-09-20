@@ -1,0 +1,16 @@
+Escreva uma função em C++ que seja equivalente à função em R abaixo:
+
+```{r}
+soma_n <- function(n) {
+  total <- 0
+  for (i in seq_len(n)) {
+    total <- total + i
+  }
+  total
+}
+```
+
+```{r}
+soma_n(10)
+```
+
