@@ -1,3 +1,20 @@
+```{r}
+fib_r <- function(n) {
+  a <- 0
+  b <- 1
+  
+  if (n >= 3) {
+    for (i in seq(from = 3, to = n)) {
+      c <- a + b
+      a <- b
+      b <- c
+    }
+  }
+  
+  b
+}
+```
+
 ```{Rcpp}
 // [[Rcpp::export]]
 int fib_cpp (int n)
@@ -14,23 +31,6 @@ int fib_cpp (int n)
   }
   
   return b;
-}
-```
-
-```{r}
-fib_r <- function(n) {
-  a <- 0
-  b <- 1
-  
-  if (n >= 3) {
-    for (i in seq(from = 3, to = n)) {
-      c <- a + b
-      a <- b
-      b <- c
-    }
-  }
-  
-  b
 }
 ```
 
