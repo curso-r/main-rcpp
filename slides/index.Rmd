@@ -58,6 +58,7 @@ library(tidyverse)
 - Pacotes com código C++
 - Um pouco sobre a API do R em C
 - Introdução ao `{cpp11}` 
+- Paralelismo com {RcppParallel}
 
 ]
 
@@ -270,15 +271,18 @@ class: middle, center
 
 ## TODO
 
-- vetores
-- atributos
-- passar um DF
-- Matrizes e Arrays no Rcpp armadillo
-- interromper loop
-- ponteiros externos (apontar p/ uma classe do c++)
-- linkar com uma lib externa (poderia ser uma header only qualquer)
-- mais alguns casos de uso
-- alguns exemplos usando a API do R direto
-- um pouquinho sobre cpp 11
+- vetores (C)
+- in-place operations (D)
+- atributos (C)
+- passar um DF (D)
+- Matrizes e Arrays no Rcpp armadillo (C)
+- mais alguns casos de uso (D)
+
+- interromper loop (C)
+- ponteiros externos (apontar p/ uma classe do c++) (D)
+
+- alguns exemplos usando a API do R direto (C)
+- um pouquinho sobre cpp 11 (D)
+- Rcpp parallel (C)
 
 
