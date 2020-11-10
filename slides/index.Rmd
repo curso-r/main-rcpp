@@ -265,3 +265,20 @@ class: middle, center
 
 ### Exercício 1
 
+---
+class: middle, center
+
+## TODO
+
+- vetores
+- atributos
+- passar um DF
+- Matrizes e Arrays no Rcpp armadillo
+- interromper loop
+- ponteiros externos (apontar p/ uma classe do c++)
+- linkar com uma lib externa (poderia ser uma header only qualquer)
+- mais alguns casos de uso
+- alguns exemplos usando a API do R direto
+- um pouquinho sobre cpp 11
+
+
