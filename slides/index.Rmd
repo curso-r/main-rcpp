@@ -23,7 +23,7 @@ class: middle, center, inverse
 ![:scale 50%](img/cursor1-5.png)
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = TRUE, echo = FALSE, 
+knitr::opts_chunk$set(eval = TRUE, echo = TRUE, comment = "#>",
                       dpi = 96, fig.height = 4.7, 
                       fig.width = 10, fig.retina = 3)
 library(tidyverse)
@@ -130,7 +130,7 @@ Além de todas as diferenças conceituais, é claro, as duas linguagens também 
 
 .pull-left[
 
-```{r, echo = TRUE}
+```{r}
 hello <- function(name) {
   print(paste("hello", name))
 }
@@ -141,7 +141,7 @@ hello("world")
 
 .pull-right[
 
-```{Rcpp, echo = TRUE}
+```{Rcpp}
 #include <Rcpp.h>
 // [[Rcpp::export]]
 void hello (std::string name)
@@ -152,7 +152,7 @@ void hello (std::string name)
 }
 ```
 
-```{r, echo = TRUE}
+```{r}
 hello("world")
 ```
 
@@ -182,7 +182,7 @@ ferramenta para criar extensões do R que utilizam C/C++
 
 Existem dois principais motivos para usar Rcpp:
 
-1. Você um código lento em R (geralmente envolvendo loops) que não é trivial de
+- Você um código lento em R (geralmente envolvendo loops) que não é trivial de
 vetorizar. Seu objetivo então, é escrever esse código em C++ para se beneficiar 
 da velocidade, sem necessariamente precisar mudar o algoritmo.
 
@@ -190,7 +190,7 @@ Essa é talvez a forma mais comum de se usar Rcpp. Você escreve seu código em 
 e otimiza as partes que são *funis* de performance em C++. Pacotes como {text2vec},
 {ranger}, {tm} e versões anteriores do {dplyr} usam Rcpp desta forma.
 
-2. Você deseja usar, pelo R, uma biblioteca já consolidada escrita em C++. 
+- Você deseja usar, pelo R, uma biblioteca já consolidada escrita em C++. 
 Por exemplo, a [libmagick]() é uma biblioteca escrita em C++ que possui diversas
 funções para manipulação de imagens - ao invés de re-escrever a sua funcionalidade
 em R, usamos Rcpp para *conectá-la* ao R.
@@ -269,9 +269,89 @@ class: middle, center
 ---
 class: middle, center
 
+---
+## Vetores
+
+Assim como o resto dos objetos do C++, vetores precisam ter seus tipos
+especificados no momento de criação. Felizmente, há tipos específicos que
+podemos usar sem ter muito trabalho. Aqui falaremos sobre `NumericVector`,
+`StringVector` e `LogicalVector`.
+
+```Rcpp
+NumericVector v(n);
+NumericVector v(n, k);
+NumericVector v = NumericVector::create(Named("x") = 1, _["y"] = 2);
+```
+
+```Rcpp
+StringVector v(n);
+StringVector v(n, c);
+StringVector v = StringVector::create(Named("x") = 'a', _["y"] = 'b');
+```
+
+Redimensionar vetores não é uma tarefa fácil! Muitas vezes o jeito mais simples
+é copiar o vetor para um "esqueleto" vazio maior.
+
+---
+## Acessar elementos
+
+Acessar elementos de vetores é tão simples quanto no R. Podemos usar tanto `[]`
+quanto `()`: o primeiro ignora acessos fora dos limites e o segundo retorna um
+erro. Ambos aceitam números (índices), strings (nomes) ou booleanos.
+
+Atribuições funcionam exatamente da mesma forma que o R. **Note que os índices
+sempre começam em 0!**
+
+.pull-left[
+
+```Rcpp
+double x1          = v[n];
+double x2          = v[c];
+NumericVector res1 = v[numeric];
+NumericVector res2 = v[integer];
+NumericVector res3 = v[character];
+NumericVector res4 = v[logical];
+```
+
+]
+
+.pull-right[
+
+```Rcpp
+v[n]         = x1;
+v[c]         = x2;
+v[numeric]   = v2;
+v[integer]   = v2;
+v[character] = v2;
+v[logical]   = v2;
+```
+
+]
+
+---
+## Funções membras
+
+Funções membras (também conhecidas como "métodos") são funções que pertencem a
+um objeto, ou seja, para qualquer objeto de um dado tipo, você pode chamar as
+suas funções membras com a sintaxe `v.f()`. Isso é comum no Python, mas apenas
+pacotes que usam `{R6}` no R têm métodos.
+
+```{r, echo=FALSE}
+dplyr::tribble(
+  ~`Função`, ~`Descrição`,
+  "`length()`/`size()`", "Comprimento do vetor",
+  "`names()`", "Nomes do vetor",
+  "`fill(x)`", "Preencher o vetor com valor `x`",
+  "sort()", "Ordenar o vetor",
+  "`begin()`/`end()`", "Iteradores para o começo e o fim do vetor",
+  "`push_back(x)`/`push_front(x)`", "Colocar o valor `x` no fim/início do vetor"
+) %>%
+  knitr::kable()
+```
+
+---
 ## TODO
 
-- vetores (C)
 - in-place operations (D)
 - atributos (C)
 - passar um DF (D)
