@@ -141,7 +141,7 @@ hello("world")
 
 .pull-right[
 
-```{Rcpp}
+```{Rcpp, cache=TRUE}
 #include <Rcpp.h>
 // [[Rcpp::export]]
 void hello (std::string name)
@@ -152,7 +152,7 @@ void hello (std::string name)
 }
 ```
 
-```{r}
+```{r, cache=TRUE}
 hello("world")
 ```
 
@@ -329,7 +329,7 @@ v[logical]   = v2;
 ]
 
 ---
-## Funções membras
+## Atributos
 
 Funções membras (também conhecidas como "métodos") são funções que pertencem a
 um objeto, ou seja, para qualquer objeto de um dado tipo, você pode chamar as
@@ -350,19 +350,86 @@ dplyr::tribble(
 ```
 
 ---
+## Data frames
+
+Para criar um data frame, usamos a função `DataFrame::create()`, que recebe
+vetores que servirão como as colunas. A sintaxe é muito parecida com a que vimos
+até agora para vetores, com uma diferença importante: as colunas serão
+**referências** aos vetores originais.
+
+```Rcpp
+NumericVector v = {1,2};
+
+// Criando um data frame
+DataFrame df = DataFrame::create(Named("V1") = v,
+                                 Named("V2") = clone(v));
+// Alterando o vetor v
+v = v * 2;
+```
+
+No código acima, a coluna `V1` será multiplicada por 2, enquanto a coluna `V2`
+permanecerá intocada.
+
+---
+## Atributos
+
+As funções membras de data frames são muito parecidas com as dos vetores, mas
+têm algumas distinções importantes. No geral, os métodos operam nas colunas e
+não nos elementos como acontecia antes com os vetores.
+
+```{r, echo=FALSE}
+dplyr::tribble(
+  ~`Função`, ~`Descrição`,
+  "`length()`/`size()`", "Número de colunas",
+  "`nrows()`", "Número de linhas",
+  "`names()`", "Nomes das colunas",
+  "`fill(x)`", "Preencher todas as colunas com valor `x`",
+  "`begin()`/`end()`", "Iteradores para a primeira/última coluna",
+  "`push_back(x)`/`push_front(x)`", "Colocar o vetor `x` no fim/início da data frame"
+) %>%
+  knitr::kable()
+```
+
+---
+## RcppArmadillo
+
+`{RcppArmadillo}` é um pacote de álgebra linear que consegue acelerar _ainda
+mais_ operações com vetores e matrizes. Aqui vamos dar apenas um pequeno exemplo
+de como ela funciona, mas existem infinitas possibilidades de como usar essa
+biblioteca.
+
+```Rcpp
+#include <RcppArmadillo.h>
+using namespace arma;
+
+vec v;
+v.subvec(from, to);                           // Acesso contíguo
+
+mat M;
+M.t()                                         // Matriz transposta
+M.reshape()                                   // Redimensionar matrix
+M(i, j)                                       // Acessar elemento
+inv(M)                                        // Matriz inversa
+M.submat(row_from, col_from, row_to, col_to); // Acesso contíguo
+```
+
+---
 ## TODO
 
-- in-place operations (D)
-- atributos (C)
-- passar um DF (D)
-- Matrizes e Arrays no Rcpp armadillo (C)
-- mais alguns casos de uso (D)
+- [x] vetores (C)
+- [x] in-place operations (D) # Cara, acho que fiz isso sem perceber
+- [x] atributos (C)
+- [ ] passar um DF (D)
+- [x] Matrizes e Arrays no Rcpp armadillo (C)
+- [ ] mais alguns casos de uso (D)
+- [ ] exercícios (C)
+- [ ] exercícios (D)
 
-- interromper loop (C)
-- ponteiros externos (apontar p/ uma classe do c++) (D)
+- [ ] interromper loop (C)
+- [ ] ponteiros externos (apontar p/ uma classe do c++) (D)
 
-- alguns exemplos usando a API do R direto (C)
-- um pouquinho sobre cpp 11 (D)
-- Rcpp parallel (C)
+- [ ] alguns exemplos usando a API do R direto (C)
+- [ ] um pouquinho sobre cpp 11 (D)
+- [ ] Rcpp parallel (C)
 
 

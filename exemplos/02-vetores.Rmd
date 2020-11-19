@@ -92,14 +92,14 @@ using namespace Rcpp;
 List elementos()
 {
   // Vetor com nomes (nova sintaxe!)
-  NumericVector v{10, 20, 30, 40, 50};
+  NumericVector v = {10, 20, 30, 40, 50};
   v.names() = CharacterVector({"A", "B", "C", "D", "E"});
   
   // Vetores de acesso
-  NumericVector   numeric{1, 3};
-  IntegerVector   integer{1, 3};
-  CharacterVector character{"B", "D"};
-  LogicalVector   logical{false, true, false, true, false};
+  NumericVector   numeric = {1, 3};
+  IntegerVector   integer = {1, 3};
+  CharacterVector character = {"B", "D"};
+  LogicalVector   logical = {false, true, false, true, false};
   
   // Acessando valores
   double x1          = v[0];
@@ -137,13 +137,6 @@ elementos()
 
 ## Funções membras
 
-`length()`/`size()`", "Comprimento do vetor",
-  "`names()`", "Nomes do vetor",
-  "`fill(x)`", "Preencher o vetor com valor `x`",
-  "sort()", "Ordenar o vetor",
-  "`begin()`/`end()`", "Iteradores para o começo e o fim do vetor",
-  "`push_back(x)`
-
 ```{Rcpp}
 #include <Rcpp.h>
 using namespace Rcpp;
@@ -162,10 +155,10 @@ List membras()
   v2.push_front(1);
   v2.sort();
   
-  return List::create(Named("length")     = v.length(),
-                      Named("size")       = v.size(),
-                      Named("names")      = v.names(),
-                      Named("resto")      = v2);
+  return List::create(Named("length") = v.length(),
+                      Named("size")   = v.size(),
+                      Named("names")  = v.names(),
+                      Named("resto")  = v2);
 }
 ```
 

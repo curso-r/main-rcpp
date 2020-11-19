@@ -1,0 +1,18 @@
+# RcppArmadillo
+
+```{Rcpp}
+#include <RcppArmadillo.h>
+using namespace arma;
+
+// [[Rcpp::export]]
+vec armadillo()
+{
+  vec v(3);
+	v.size();
+	
+	// v.subvec(from, to);
+	
+  return v;
+}
+```
+
