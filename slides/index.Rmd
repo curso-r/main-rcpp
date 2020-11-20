@@ -350,6 +350,27 @@ dplyr::tribble(
 ```
 
 ---
+## NA, NaN, Inf & NULL
+
+Dependendo do tipo do vetor que você está usando você vai precisar usar
+diferentes símbolos para NA.
+
+```{r, echo=FALSE}
+dplyr::tribble(
+  ~`Vetor`, ~`Símbolo do NA`,
+  "`NumericVector`", "`NA_REAL`",
+  "`IntegerVector`", "`NA_INTEGER`",
+  "`LogicalVector`", "`NA_LOGICAL`",
+  "`CharacterVector`", "`NA_STRING`"
+) %>%
+  knitr::kable()
+```
+
+Para `Inf`, `-Inf` e `NaN` usamos os símbolos: `R_PosInf`, `R_NegInf` e `R_NaN` respectivamente.
+
+Para `NULL` usamos `R_NilValue`.
+
+---
 ## Data frames
 
 Para criar um data frame, usamos a função `DataFrame::create()`, que recebe
@@ -419,9 +440,9 @@ M.submat(row_from, col_from, row_to, col_to); // Acesso contíguo
 - [x] vetores (C)
 - [x] in-place operations (D) # Cara, acho que fiz isso sem perceber
 - [x] atributos (C)
-- [ ] passar um DF (D)
+- [x] passar um DF (D)
 - [x] Matrizes e Arrays no Rcpp armadillo (C)
-- [ ] mais alguns casos de uso (D)
+- [x] mais alguns casos de uso (D)
 - [ ] exercícios (C)
 - [ ] exercícios (D)
 
