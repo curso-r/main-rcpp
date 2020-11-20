@@ -435,6 +435,27 @@ M.submat(row_from, col_from, row_to, col_to); // Acesso contíguo
 ```
 
 ---
+## Rápido mas perigoso
+
+Já ficou provado que o C++ pode tornar um programa em R exponencialmente mais
+rápido, mas isso também pode trazer alguns problemas. Um deles é a dificuldade
+de interromper a execução de um programa! Um loop rodando em `{Rcpp}` pode ser
+impossível de parar da mesma forma que faríamos com a tecla `ESC` em um loop
+R comum.
+
+```Rcpp
+void forever()
+{
+  for (int i = 0; true; i++)
+  {
+    Rcout << "Iteration: " << i << std::endl;
+    ::sleep(1);
+    Rcpp::checkUserInterrupt();
+  }
+}
+```
+
+---
 ## TODO
 
 - [x] vetores (C)
@@ -443,10 +464,10 @@ M.submat(row_from, col_from, row_to, col_to); // Acesso contíguo
 - [x] passar um DF (D)
 - [x] Matrizes e Arrays no Rcpp armadillo (C)
 - [x] mais alguns casos de uso (D)
-- [ ] exercícios (C)
+- [x] exercícios (C)
 - [ ] exercícios (D)
 
-- [ ] interromper loop (C)
+- [x] interromper loop (C)
 - [ ] ponteiros externos (apontar p/ uma classe do c++) (D)
 
 - [ ] alguns exemplos usando a API do R direto (C)

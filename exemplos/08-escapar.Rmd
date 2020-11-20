@@ -1,0 +1,42 @@
+# Escapar de um loop
+
+```{Rcpp}
+#include <unistd.h>
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+void forever()
+{
+  for (int i = 0; ; i++)
+  {
+    Rcout << "Iteration: " << i << std::endl;
+    ::sleep(1);
+  }
+}
+```
+
+```{r}
+forever()
+```
+
+```{Rcpp}
+#include <unistd.h>
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+void forever2()
+{
+  for (int i = 0; ; i++)
+  {
+    Rcout << "Iteration: " << i << std::endl;
+    ::sleep(1);
+    checkUserInterrupt();
+  }
+}
+```
+
+```{r}
+forever2()
+```
