@@ -1,0 +1,28 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Sort
+
+```{Rcpp}
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+NumericVector cpp_sort(NumericVector x)
+{
+  NumericVector ret = clone(x);
+  std::sort(ret.begin(), ret.end());
+  return ret;
+}
+```
+
+```{r}
+x <- runif(1e6)
+bench::mark(
+  sort(x),
+  cpp_sort(x)
+)
+```
+
