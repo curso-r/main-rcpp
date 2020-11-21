@@ -27,3 +27,10 @@ selecionar <- function(v, s) {
   v[s]
 }
 */
+
+
+// Crie uma função equivalente à função `rep` do R
+
+/*** R
+rep(c(1,2,3), 3)
+*/
