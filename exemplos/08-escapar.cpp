@@ -1,6 +1,5 @@
-# Escapar de um loop
+// # Escapar de um loop
 
-```{Rcpp}
 #include <unistd.h>
 #include <Rcpp.h>
 using namespace Rcpp;
@@ -14,16 +13,10 @@ void forever()
     ::sleep(1);
   }
 }
-```
 
-```{r}
-forever()
-```
-
-```{Rcpp}
-#include <unistd.h>
-#include <Rcpp.h>
-using namespace Rcpp;
+/*** R
+# forever()
+*/
 
 // [[Rcpp::export]]
 void forever2()
@@ -35,8 +28,7 @@ void forever2()
     checkUserInterrupt();
   }
 }
-```
 
-```{r}
-forever2()
-```
+/*** R
+# forever2()
+*/

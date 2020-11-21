@@ -1,10 +1,6 @@
-# RcppArmadillo
+// # RcppArmadillo
+// ## Um vetor simples
 
-
-
-## Um vetor simples
-
-```{Rcpp}
 // [[Rcpp::depends(RcppArmadillo)]]
 #include <RcppArmadillo.h>
 using namespace arma;
@@ -16,20 +12,12 @@ vec arma_vec()
 	
   return v;
 }
-```
 
-```{r}
+/*** R
 arma_vec()
-```
+*/
 
-
-
-## Modelo linear
-
-```{Rcpp}
-// [[Rcpp::depends(RcppArmadillo)]]
-#include <RcppArmadillo.h>
-using namespace arma;
+// ## Modelo linear
 
 // [[Rcpp::export]]
 Rcpp::List fast_lm(const vec & y, const mat & X) {
@@ -45,11 +33,11 @@ Rcpp::List fast_lm(const vec & y, const mat & X) {
  return Rcpp::List::create(Rcpp::Named("coefficients") = coef,
                            Rcpp::Named("stderr")       = stderrest);
 }
-```
 
-```{r}
+/*** R
 y <- log(trees$Volume)
 X <- cbind(1, log(trees$Girth))
 
 bench::mark(fast_lm(y, X), lm(log(Volume) ~ log(Girth), data = trees), check = FALSE)
-```
+*/
+

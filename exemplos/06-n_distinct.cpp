@@ -1,6 +1,9 @@
-# n_distinct
+// # n_distinct
+// nem sempre é fácil ser mais rápido!
 
-```{Rcpp}
+#include <Rcpp.h>
+using namespace Rcpp;
+
 // [[Rcpp::export]]
 int cpp_n_distinct(NumericVector x)
 {
@@ -16,9 +19,8 @@ int cpp_n_distinct(NumericVector x)
   
   return unique.size();
 }
-```
 
-```{r}
+/*** R
 library(dplyr)
 x <- sample(1:5000, size = 1e6, replace = TRUE)
 bench::mark(
@@ -26,5 +28,4 @@ bench::mark(
   length(unique(x)),
   cpp_n_distinct(x)
 )
-```
-
+*/

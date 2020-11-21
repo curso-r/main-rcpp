@@ -1,11 +1,5 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
-# Sort
+// # Sort
 
-```{Rcpp}
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -16,13 +10,12 @@ NumericVector cpp_sort(NumericVector x)
   std::sort(ret.begin(), ret.end());
   return ret;
 }
-```
 
-```{r}
+/*** R
 x <- runif(1e6)
 bench::mark(
   sort(x),
   cpp_sort(x)
 )
-```
+*/
 

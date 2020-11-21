@@ -1,10 +1,7 @@
-# Vetores
+// # Vetores
 
+// ## Criando um vetor
 
-
-## Criando um vetor
-
-```{Rcpp}
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -14,19 +11,13 @@ NumericVector vec(int n)
   NumericVector v(n);
   return v;
 }
-```
 
-```{r}
+
+/*** R
 vec(10)
-```
+*/
 
-
-
-## Dando nomes para elementos
-
-```{Rcpp}
-#include <Rcpp.h>
-using namespace Rcpp;
+// ## Dando nomes para elementos
 
 // [[Rcpp::export]]
 NumericVector vec2()
@@ -34,19 +25,12 @@ NumericVector vec2()
   NumericVector v = NumericVector::create(Named("x") = 1 , _["y"] = 2);
   return v;
 }
-```
 
-```{r}
+/*** R
 vec2()
-```
+*/
 
-
-
-## Vetores de strings
-
-```{Rcpp}
-#include <Rcpp.h>
-using namespace Rcpp;
+// ## Vetores de strings
 
 // [[Rcpp::export]]
 StringVector vec3(int n)
@@ -54,19 +38,12 @@ StringVector vec3(int n)
   StringVector v(n);
   return v;
 }
-```
 
-```{r}
+/*** R
 vec3(3)
-```
+*/
 
-
-
-## Inicialização
-
-```{Rcpp}
-#include <Rcpp.h>
-using namespace Rcpp;
+// ## Inicialização
 
 // [[Rcpp::export]]
 StringVector vec4(int n, char c)
@@ -74,19 +51,12 @@ StringVector vec4(int n, char c)
   StringVector v(n, c);
   return v;
 }
-```
 
-```{r}
+/*** R
 vec4(5, "k")
-```
+*/
 
-
-
-## Acessar elementos
-
-```{Rcpp}
-#include <Rcpp.h>
-using namespace Rcpp;
+// ## Acessar elementos
 
 // [[Rcpp::export]]
 List elementos()
@@ -128,18 +98,12 @@ List elementos()
                       Named("res4") = res4,
                       Named("v")    = v);
 }
-```
 
-```{r}
+/*** R
 elementos()
-```
+*/
 
-
-## Funções membras
-
-```{Rcpp}
-#include <Rcpp.h>
-using namespace Rcpp;
+// ## Funções membras
 
 // [[Rcpp::export]]
 List membras()
@@ -160,8 +124,8 @@ List membras()
                       Named("names")  = v.names(),
                       Named("resto")  = v2);
 }
-```
 
-```{r}
+/*** R
 membras()
-```
+*/
+

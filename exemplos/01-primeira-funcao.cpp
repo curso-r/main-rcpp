@@ -1,4 +1,4 @@
-```{r}
+/*** R
 fib_r <- function(n) {
   a <- 0
   b <- 1
@@ -13,9 +13,8 @@ fib_r <- function(n) {
   
   b
 }
-```
+*/
 
-```{Rcpp}
 // [[Rcpp::export]]
 int fib_cpp (int n)
 {
@@ -32,14 +31,15 @@ int fib_cpp (int n)
   
   return b;
 }
-```
 
-```{r}
+
+/*** R
 b <- bench::mark(
   fib_r(40),
   fib_cpp(40)
 )
 plot(b)
-```
+*/
+
 
 

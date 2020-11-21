@@ -1,6 +1,5 @@
-# Chamar uma função do R
+// # Chamar uma função do R
 
-```{Rcpp}
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -19,10 +18,10 @@ NumericVector cpp_bootstrap(NumericVector x, int n, Function stat)
   
   return stats;
 }
-```
 
-```{r}
+/*** R
 x <- rnorm(1e5)
 stats <- cpp_bootstrap(x, 100, mean)
-```
+hist(stats)
+*/
 

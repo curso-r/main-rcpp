@@ -1,10 +1,6 @@
-# Data frames
+// # Data frames
+// ## Criando uma data frame
 
-
-
-## Criando uma data frame
-
-```{Rcpp}
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -20,19 +16,12 @@ DataFrame df()
   v = v * 2;
   return df;
 }
-```
 
-```{r}
+/*** R
 df()
-```
+*/
 
-
-
-## Acessando colunas
-
-```{Rcpp}
-#include <Rcpp.h>
-using namespace Rcpp;
+// ## Acessando colunas
 
 // [[Rcpp::export]]
 DataFrame df2()
@@ -49,19 +38,12 @@ DataFrame df2()
   
   return df;
 }
-```
 
-```{r}
+/*** R
 df2()
-```
+*/
 
-
-
-## Funções membras
-
-```{Rcpp}
-#include <Rcpp.h>
-using namespace Rcpp;
+// ## Funções membras
 
 // [[Rcpp::export]]
 List membras()
@@ -84,8 +66,8 @@ List membras()
                       Named("names")  = df.names(),
                       Named("resto")  = df2);
 }
-```
 
-```{r}
+/*** R
 str(membras())
-```
+*/
+
