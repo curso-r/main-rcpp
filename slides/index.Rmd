@@ -73,7 +73,7 @@ library(tidyverse)
 - [FAQ do Rcpp](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-FAQ.pdf)
 - [Referência rápida](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-quickref.pdf)
 - [Capítulo do Advanced R](https://adv-r.hadley.nz/rcpp.html)
-- [Rcpp book](https://teuder.github.io/rcpp4everyone_en/)
+- [Rcpp for everyone](https://teuder.github.io/rcpp4everyone_en/)
 - [Curso na UseR 2020](https://www.youtube.com/watch?v=57H34Njrns4)
 
 ]
@@ -223,6 +223,21 @@ Pacotes como {magick}, {hunspell}, {haven}, {opencv} e etc. usam Rcpp desta form
 
 ---
 
+## Arquivos do tipo .cpp
+
+O RStudio possui suporte para aquivos do tipo `.cpp` e vamos usá-lo como IDE.
+
+.pull-left[
+
+- você pode usar a função `Rcpp::sourceCpp()` para compilar um arquivo `.cpp` a partir do R.
+  
+- é possível usar a função `Rcpp::cppFunction()` para escrever os
+  códigos em scripts `.R`.
+
+]
+
+---
+
 ## Introdução ao Rcpp
 
 O esquema abaixo apresenta o esqueleto de uma função C++:
@@ -234,40 +249,20 @@ Fonte: [*Extending R with C++: A Brief Introduction to Rcpp*](https://cran.r-pro
 ]
 
 ---
+class: middle, center
 
-## RMarkdown & Rcpp
-
-O RMarkdown é uma ferramenta legal para começar a aprender Rcpp, pela facilidade de programar nas duas linguagens.
-
-.pull-left[
-
-- na primeira parte do curso vamos usar o RMarkdown e quando usarmos
-  pacotes vamos programar em arquivos separados.
-  
-- é possível usar a função `Rcpp::cppFunction()` para escrever os
-  códigos em scripts `.R`.
-
-]
-
-.pull-right[
-
-![:scale 60%](img/Screen Shot 2020-09-18 at 15.05.14.png)
-
-]
+### Exemplo 00
 
 ---
 class: middle, center
 
-### Exemplo 1
+### Exemplo 01
 
 ---
 
 class: middle, center
 
-### Exercício 1
-
----
-class: middle, center
+### Exercício 01
 
 ---
 ## Vetores
@@ -350,6 +345,21 @@ dplyr::tribble(
 ```
 
 ---
+class: middle, center
+
+## Exemplo 02
+
+---
+class: middle, center
+
+## Exercício 02
+
+---
+class: middle, center
+
+## Exercício 03
+
+---
 ## NA, NaN, Inf & NULL
 
 Dependendo do tipo do vetor que você está usando você vai precisar usar
@@ -369,6 +379,48 @@ dplyr::tribble(
 Para `Inf`, `-Inf` e `NaN` usamos os símbolos: `R_PosInf`, `R_NegInf` e `R_NaN` respectivamente.
 
 Para `NULL` usamos `R_NilValue`.
+
+---
+class: middle, center
+
+## Exemplo 03
+
+---
+class: middle, center
+
+## Exercício 04
+
+---
+class: middle, center
+
+## Exercício 05
+
+---
+## If-else
+
+No C++ o constructo if-else é idêntico ao R.
+
+```{Rcpp}
+// [[Rcpp::export]]
+int absoluto (int x)
+{
+  if (x > 0) {
+    return x;
+  } else {
+    return -x;
+  }
+}
+```
+
+---
+class: middle, center
+
+## Exemplo 04
+
+---
+class: middle, center
+
+## Exercício 06
 
 ---
 ## Data frames
@@ -412,6 +464,16 @@ dplyr::tribble(
 ```
 
 ---
+class: middle, center
+
+## Exemplo 05
+
+---
+class: middle, center
+
+## Exercício 07
+
+---
 ## RcppArmadillo
 
 `{RcppArmadillo}` é um pacote de álgebra linear que consegue acelerar _ainda
@@ -435,6 +497,48 @@ M.submat(row_from, col_from, row_to, col_to); // Acesso contíguo
 ```
 
 ---
+class: middle, center
+
+## Exemplo 06
+
+---
+class: middle, center
+
+## Exercício 08
+
+---
+## Chamando funções do R
+
+É possível chamar funções do R pelo Rcpp. Para isso usamos o tipo Function.
+
+.pull-left[
+
+```{Rcpp}
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+NumericVector callWithOne(
+    Function f) {
+  return f(1);
+}
+```
+]
+
+.pull-right[
+
+```{r}
+callWithOne(function(x) x + 100)
+```
+
+]
+
+---
+class: middle, center
+
+## Exemplo 07
+
+---
 ## Rápido mas perigoso
 
 Já ficou provado que o C++ pode tornar um programa em R exponencialmente mais
@@ -456,22 +560,10 @@ void forever()
 ```
 
 ---
-## TODO
+class: middle, center
 
-- [x] vetores (C)
-- [x] in-place operations (D) # Cara, acho que fiz isso sem perceber
-- [x] atributos (C)
-- [x] passar um DF (D)
-- [x] Matrizes e Arrays no Rcpp armadillo (C)
-- [x] mais alguns casos de uso (D)
-- [x] exercícios (C)
-- [ ] exercícios (D)
+## Exercício 09
 
-- [x] interromper loop (C)
-- [ ] ponteiros externos (apontar p/ uma classe do c++) (D)
 
-- [ ] alguns exemplos usando a API do R direto (C)
-- [ ] um pouquinho sobre cpp 11 (D)
-- [ ] Rcpp parallel (C)
 
 
