@@ -4,7 +4,7 @@
     <title>R e C++</title>
     <meta charset="utf-8" />
     <meta name="author" content="Daniel Falbel" />
-    <script src="libs/header-attrs-2.4/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.5/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="theme.css" type="text/css" />
   </head>
@@ -24,7 +24,7 @@ class: middle, center, inverse
 
 ## Curso-R
 
-![:scale 85%](img/professores.png)
+![:scale 80%](img/professores.png)
 
 ---
 
@@ -36,72 +36,20 @@ class: middle, center, inverse
 
 ---
 
-## Nossos cursos
+## Informações gerais
 
-.pull-left[
-&lt;div class="container center"&gt;
-  &lt;div class="card"&gt;
-    &lt;h2&gt;Programação em R&lt;/h2&gt;
-    &lt;hr style = "background-color: #3bb44a;"/&gt;
-    &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/r4ds-1/"&gt;R para Ciência de dados I&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/r4ds-2/"&gt;R para Ciência de dados II&lt;/a&gt;&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+- As aulas vão das 9h às 13, com uma pausa de 10 min em torno das 11:00
+- As aulas serão gravadas e disponibilizadas no Google Classroom
+- Podem mandar dúvidas no chat do Zoom ou abrir o microfone para perguntar
+- Teremos bastante exercícios para resolver durante o workshop, então se prepare!
 
-&lt;br&gt;
+## Informações de vocês
 
-&lt;div class="container center"&gt;
-  &lt;div class="card"&gt;
-    &lt;h2&gt;Modelagem&lt;/h2&gt;
-    &lt;hr style = "background-color: #996699;"/&gt;
-    &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/regressao/"&gt;Regressão Linear&lt;/a&gt;&lt;/p&gt;
-    &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/intro-machine-learning/"&gt;Machine Learning&lt;/a&gt;&lt;/p&gt;
-    &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/xgboost/"&gt;XGBoost&lt;/a&gt;&lt;/p&gt;
-    &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/deep-learning/"&gt;Deep Learning&lt;/a&gt;&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-]
+- Nós gostaríamos de saber sobre vocês:
 
-
-.pull-right[
-&lt;div class="container center"&gt;
-  &lt;div class="card"&gt;
-    &lt;h2&gt;Extração de dados&lt;/h2&gt;
-    &lt;hr style = "background-color: #eeba30;"/&gt;
-    &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/web-scraping-1/"&gt;Web scraping I&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/web-scraping-2/"&gt;Web scraping II&lt;/a&gt;&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;br&gt;
-
-&lt;div class="container center"&gt;
-  &lt;div class="card"&gt;
-    &lt;h2&gt;Comunicação e automação&lt;/h2&gt;
-    &lt;hr style = "background-color: #ff6699;"/&gt;
-    &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/dashboards/"&gt;Dashboards com R&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;a href = "https://www.curso-r.com/cursos/deploy/"&gt;Deploy&lt;/a&gt;&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-]
-
----
-
-## Informações das aulas
-
-- 9h às 13, pausa de 10 min +- 11h
-- serão gravadas e disponibilizadas no Classroom
-- pode mandar dúvidas no chat ou abrir o microfone para perguntar
-- teremos bastante exercícios para resolver durante o workshop
-
----
-## Apresentação
-
-Seria legal se todos se apresentassem:
-
-- Nome
-- Com o que trabalha?
-- Como imagina usar Rcpp no futuro?
+  - Nome
+  - Com o que trabalha?
+  - Como imagina usar `{Rcpp}` no futuro?
 
 ---
 
@@ -314,10 +262,21 @@ O RStudio possui suporte para aquivos do tipo `.cpp` e vamos usá-lo como IDE.
 
 .pull-left[
 
-- você pode usar a função `Rcpp::sourceCpp()` para compilar um arquivo `.cpp` a partir do R.
+- Você pode usar a função `Rcpp::sourceCpp()` para compilar um arquivo `.cpp` a
+partir do R.
   
-- é possível usar a função `Rcpp::cppFunction()` para escrever os
-  códigos em scripts `.R`.
+- É possível usar a função `Rcpp::cppFunction()` para escrever os códigos em
+scripts `.R`
+
+- O RMarkdown permite programar nas duas linguagens, além de Markdown tradicional
+
+- Vamos usar arquivos `.cpp` puros com comentários que permitem programar em R
+
+]
+
+.pull-right[
+
+![:scale 60%](img/Screen Shot 2020-09-18 at 15.05.14.png)
 
 ]
 
@@ -325,7 +284,11 @@ O RStudio possui suporte para aquivos do tipo `.cpp` e vamos usá-lo como IDE.
 
 ## Introdução ao Rcpp
 
-O esquema abaixo apresenta o esqueleto de uma função C++:
+O esquema abaixo apresenta o esqueleto de uma função C++. Preste bastante
+atenção na declaração dos tipos dos objetos (tanto argumentos, quanto variáveis),
+na especificação do tipo da saída, no ponto-e-vírgula depois de absolutamente
+todas as linhas e no fato de que `return` é obrigatório (apesar de nem ser
+uma função como no R).
 
 .center[
 ![](img/Screen Shot 2020-09-18 at 14.34.56.png)
@@ -445,7 +408,9 @@ class: middle, center
 ## NA, NaN, Inf &amp; NULL
 
 Dependendo do tipo do vetor que você está usando você vai precisar usar
-diferentes símbolos para NA.
+diferentes símbolos para NA. Isso é consequência direta do fato do C++ ser
+forte e estaticamente tipada: não podemos criar um vetor sem declarar seu tipo
+e nem trocar o tipo de um vetor sem declarar a conversão.
 
 
 |Vetor             |Símbolo do NA |
@@ -455,7 +420,8 @@ diferentes símbolos para NA.
 |`LogicalVector`   |`NA_LOGICAL`  |
 |`CharacterVector` |`NA_STRING`   |
 
-Para `Inf`, `-Inf` e `NaN` usamos os símbolos: `R_PosInf`, `R_NegInf` e `R_NaN` respectivamente.
+Para `Inf`, `-Inf` e `NaN` usamos os símbolos: `R_PosInf`, `R_NegInf` e `R_NaN`
+respectivamente.
 
 Para `NULL` usamos `R_NilValue`.
 
@@ -475,22 +441,46 @@ class: middle, center
 ## Exercício 05
 
 ---
-## If-else
+## Fluxo de controle
 
-No C++ o constructo if-else é idêntico ao R.
+O fluxo de controle do C++ é praticamente idêntico ao do R, com algumas pequenas
+diferenças no `for`.
 
+.pull-left[
 
-```cpp
-// [[Rcpp::export]]
-int absoluto (int x)
-{
-  if (x &gt; 0) {
-    return x;
-  } else {
-    return -x;
-  }
-}
+```Rcpp
+if (x &gt; 0)
+  Rcout &lt;&lt; "positivo" &lt;&lt; std::endl;
+else if (x &lt; 0)
+  Rcout &lt;&lt; "negativo" &lt;&lt; std::endl;
+else
+  Rcout &lt;&lt; "zero" &lt;&lt; std::endl;
 ```
+
+Chaves são necessárias se o corpo de uma condição tiver mais de uma linha, assim
+como no R também!
+
+]
+
+.pull-right[
+
+```Rcpp
+int n = 10;
+while (n &gt; 0) {
+  Rcout &lt;&lt; n &lt;&lt; ", ";
+  n--;
+}
+Rcout &lt;&lt; "liftoff!" &lt;&lt; std::endl;
+```
+
+```Rcpp
+for (int n = 10; n &gt; 0; n--) {
+  Rcout &lt;&lt; n &lt;&lt; ", ";
+}
+Rcout &lt;&lt; "liftoff!" &lt;&lt; std::endl;
+```
+
+]
 
 ---
 class: middle, center
@@ -586,7 +576,8 @@ class: middle, center
 ---
 ## Chamando funções do R
 
-É possível chamar funções do R pelo Rcpp. Para isso usamos o tipo Function.
+É possível chamar funções do R pelo Rcpp e, para isso, usamos o tipo `Function`.
+Note que é necessário saber exatamente o tipo de saída retornado pela função!
 
 .pull-left[
 
@@ -596,22 +587,35 @@ class: middle, center
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-NumericVector callWithOne(
-    Function f) {
+NumericVector f1(Function f) {
   return f(1);
 }
 ```
-]
-
-.pull-right[
 
 
 ```r
-callWithOne(function(x) x + 100)
+f1(function(x) x + 100)
 ```
 
 ```
 #&gt; [1] 101
+```
+
+]
+
+.pull-right[
+
+Programar em C++ é uma tarefa árdua no começo, mas extremamente recompensadora.
+Depois de alguns dias batalhando contra erros, sua programação vai ficar
+consideravelmente mais "defensiva".
+
+
+```r
+f1(as.character)
+```
+
+```
+#&gt; Error in f1(as.character): Not compatible with requested type: [type=character; target=double].
 ```
 
 ]
@@ -646,10 +650,6 @@ void forever()
 class: middle, center
 
 ## Exercício 09
-
-
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
