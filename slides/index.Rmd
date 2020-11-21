@@ -31,6 +31,71 @@ library(tidyverse)
 
 ---
 
+## Curso-R
+
+![:scale 85%](img/professores.png)
+
+---
+
+## Linha do tempo
+
+<center>
+<img src="img/linha_do_tempo.png" width = 35%></img>
+</center>
+
+---
+
+## Nossos cursos
+
+.pull-left[
+<div class="container center">
+  <div class="card">
+    <h2>Programação em R</h2>
+    <hr style = "background-color: #3bb44a;"/>
+    <p><a href = "https://www.curso-r.com/cursos/r4ds-1/">R para Ciência de dados I</a></p>
+        <p><a href = "https://www.curso-r.com/cursos/r4ds-2/">R para Ciência de dados II</a></p>
+  </div>
+</div>
+
+<br>
+
+<div class="container center">
+  <div class="card">
+    <h2>Modelagem</h2>
+    <hr style = "background-color: #996699;"/>
+    <p><a href = "https://www.curso-r.com/cursos/regressao/">Regressão Linear</a></p>
+    <p><a href = "https://www.curso-r.com/cursos/intro-machine-learning/">Machine Learning</a></p>
+    <p><a href = "https://www.curso-r.com/cursos/xgboost/">XGBoost</a></p>
+    <p><a href = "https://www.curso-r.com/cursos/deep-learning/">Deep Learning</a></p>
+  </div>
+</div>
+]
+
+
+.pull-right[
+<div class="container center">
+  <div class="card">
+    <h2>Extração de dados</h2>
+    <hr style = "background-color: #eeba30;"/>
+    <p><a href = "https://www.curso-r.com/cursos/web-scraping-1/">Web scraping I</a></p>
+        <p><a href = "https://www.curso-r.com/cursos/web-scraping-2/">Web scraping II</a></p>
+  </div>
+</div>
+
+<br>
+
+<div class="container center">
+  <div class="card">
+    <h2>Comunicação e automação</h2>
+    <hr style = "background-color: #ff6699;"/>
+    <p><a href = "https://www.curso-r.com/cursos/dashboards/">Dashboards com R</a></p>
+        <p><a href = "https://www.curso-r.com/cursos/deploy/">Deploy</a></p>
+  </div>
+</div>
+]
+
+---
+
 ## Nesse curso vamos falar de
 
 .pull-left[
