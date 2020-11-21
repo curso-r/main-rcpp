@@ -1,3 +1,6 @@
 R
 scripts
 dados
+exercicios
+exemplos
+slides
