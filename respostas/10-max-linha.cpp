@@ -5,6 +5,24 @@ using namespace Rcpp;
 // maior valor em cada linha.
 
 
-/*** R
+double max_index (NumericVector x)
+{
+  NumericVector::iterator it = std::max_element(x.begin(),x.end());
+  return std::distance(x.begin(), it);
+}
 
+// [[Rcpp::export]]
+IntegerVector cpp_max_por_linha (NumericMatrix x)
+{
+  IntegerVector out(x.nrow());
+  for (int i = 0; i < x.nrow(); i++)
+  {
+    out[i] = max_index(x(i,_));
+  }
+  return out;
+}
+
+/*** R
+x <- matrix(runif(1000), ncol = 10)
+cpp_max_por_linha(x)
 */
