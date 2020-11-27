@@ -9,3 +9,19 @@ relu <- function(x) {
   ifelse(x > 0, x, 0)
 }
 */
+
+// [[Rcpp::export]]
+NumericVector cpp_relu (NumericVector x)
+{
+  NumericVector out = clone(x);
+  for (int i = 0; i < x.size(); i++)
+  {
+    if (x[i] < 0)
+      out[i] = 0;
+  }
+  return out;
+}
+
+/*** R
+cpp_relu(-5:5)
+*/
