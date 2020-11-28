@@ -4,7 +4,7 @@
     <title>R e C++</title>
     <meta charset="utf-8" />
     <meta name="author" content="Daniel Falbel" />
-    <script src="libs/header-attrs-2.5/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.4/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="theme.css" type="text/css" />
   </head>
@@ -649,7 +649,46 @@ void forever()
 ---
 class: middle, center
 
+## Exemplo 08
+
+---
+class: middle, center
+
 ## Exercício 09
+
+---
+
+## STL
+
+A [*Standard Templates Library*](https://pt.wikipedia.org/wiki/Standard_Template_Library) possui implementação eficiente e segura de muitos algoritmos e estruturas de dados.
+
+- No curso vamos apenas fazer um exemplo!
+- Recomendo ler [aqui](https://adv-r.hadley.nz/rcpp.html#stl) para uma introduçãoum pouco mais completa.
+
+---
+
+## Exemplo 09
+
+---
+
+## Exercício 10
+
+---
+
+## Ponteiros externos (XPtrs)
+
+Muitas vezes queremos persistir objetos que criamos no C++, motivos incluem:
+
+- Esses objetos são complicados para serem representados no R.
+- Os objetos são demorados para serem reconstruidos e você quer aproveitar aproveitar que o cálculo.
+
+Para isso usamos o template `Rcpp::XPtr`. 
+
+---
+
+class: middle, center
+
+## Exemplo 10
 
 ---
 ## API do R
@@ -672,7 +711,7 @@ purrr::map
 #&gt;     .f &lt;- as_mapper(.f, ...)
 #&gt;     .Call(map_impl, environment(), ".x", ".f", "list")
 #&gt; }
-#&gt; &lt;bytecode: 0x556cbb216638&gt;
+#&gt; &lt;bytecode: 0x7fe3ece12468&gt;
 #&gt; &lt;environment: namespace:purrr&gt;
 ```
 
@@ -727,7 +766,7 @@ cria_vetor()
 ```
 
 ```
-#&gt; [1] 2.121996e-314 2.121996e-314 2.121996e-314 4.640534e-310
+#&gt; [1] 6.947393e-310 6.947394e-310 6.947394e-310 6.947393e-310
 ```
 
 `allocVector()` abre espaço para um vetor sem limpar a memória que está lá.
@@ -737,7 +776,7 @@ cria_vetor()
 ---
 class: middle, center
 
-## Exemplo XX
+## Exemplo 11
 
 ---
 ## RcppParallel
@@ -786,7 +825,25 @@ parallelFor(0, x.size(), functor);
 ---
 class: middle, center
 
-## Exemplo XX
+## Exemplo 12
+
+---
+
+## cpp11
+
+O pacote cpp11 tem objetivos parecidos com o Rcpp e foi implementado mais recentemente.
+
+Os problemas com o Rcpp que ele tenta resolver são:
+
+- Ficar mais seguro em usar a API C do R (principalmente lidar com erros)
+- Suporte a objetos ALTREP
+- Compilar mais rápido e precisar de menos memória.
+
+---
+
+class: middle, center
+
+## Exemplo 13: introCpp11.cpp
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

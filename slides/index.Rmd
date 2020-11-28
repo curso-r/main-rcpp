@@ -645,7 +645,46 @@ void forever()
 ---
 class: middle, center
 
+## Exemplo 08
+
+---
+class: middle, center
+
 ## Exercício 09
+
+---
+
+## STL
+
+A [*Standard Templates Library*](https://pt.wikipedia.org/wiki/Standard_Template_Library) possui implementação eficiente e segura de muitos algoritmos e estruturas de dados.
+
+- No curso vamos apenas fazer um exemplo!
+- Recomendo ler [aqui](https://adv-r.hadley.nz/rcpp.html#stl) para uma introduçãoum pouco mais completa.
+
+---
+
+## Exemplo 09
+
+---
+
+## Exercício 10
+
+---
+
+## Ponteiros externos (XPtrs)
+
+Muitas vezes queremos persistir objetos que criamos no C++, motivos incluem:
+
+- Esses objetos são complicados para serem representados no R.
+- Os objetos são demorados para serem reconstruidos e você quer aproveitar aproveitar que o cálculo.
+
+Para isso usamos o template `Rcpp::XPtr`. 
+
+---
+
+class: middle, center
+
+## Exemplo 10
 
 ---
 ## API do R
@@ -676,6 +715,17 @@ pryr::sexp_type(TRUE)
 ```
 
 ---
+
+## Pacotes com código C++
+
+- O código C++ vai na pasta `src`.
+- A função `usethis::use_rcpp()` vai fazer tudo pra gente!
+- Adicionar código C++ em um pacote é uma decisão importante (principalmente se você for colocar no CRAN): aumenta bastante a complexidade de manutenção.
+Compilar código em diferentes compiladores pode ser complicado.
+
+Referência: https://r-pkgs.org/src.html
+
+---
 ## API do R
 
 A maior vantagem de aprender a API C é entender melhor como o R funciona. O
@@ -698,7 +748,7 @@ cria_vetor()
 ---
 class: middle, center
 
-## Exemplo XX
+## Exemplo 11
 
 ---
 ## RcppParallel
@@ -747,4 +797,28 @@ parallelFor(0, x.size(), functor);
 ---
 class: middle, center
 
-## Exemplo XX
+## Exemplo 12
+
+---
+
+## cpp11
+
+O pacote cpp11 tem objetivos parecidos com o Rcpp e foi implementado mais recentemente.
+
+Os problemas com o Rcpp que ele tenta resolver são:
+
+- Ficar mais seguro em usar a API C do R (principalmente lidar com erros)
+- Suporte a objetos ALTREP
+- Compilar mais rápido e precisar de menos memória.
+
+---
+
+class: middle, center
+
+## Exemplo 13: introCpp11.cpp
+
+---
+
+class: middle, center
+
+## Obrigado
