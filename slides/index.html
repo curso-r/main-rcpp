@@ -711,7 +711,7 @@ purrr::map
 #&gt;     .f &lt;- as_mapper(.f, ...)
 #&gt;     .Call(map_impl, environment(), ".x", ".f", "list")
 #&gt; }
-#&gt; &lt;bytecode: 0x7fe3ece12468&gt;
+#&gt; &lt;bytecode: 0x7fc7ffccdc98&gt;
 #&gt; &lt;environment: namespace:purrr&gt;
 ```
 
@@ -749,6 +749,17 @@ pryr::sexp_type(TRUE)
 ```
 
 ---
+
+## Pacotes com código C++
+
+- O código C++ vai na pasta `src`.
+- A função `usethis::use_rcpp()` vai fazer tudo pra gente!
+- Adicionar código C++ em um pacote é uma decisão importante (principalmente se você for colocar no CRAN): aumenta bastante a complexidade de manutenção.
+Compilar código em diferentes compiladores pode ser complicado.
+
+Referência: https://r-pkgs.org/src.html
+
+---
 ## API do R
 
 A maior vantagem de aprender a API C é entender melhor como o R funciona. O
@@ -766,7 +777,7 @@ cria_vetor()
 ```
 
 ```
-#&gt; [1] 6.947393e-310 6.947394e-310 6.947394e-310 6.947393e-310
+#&gt; [1] 4.243992e-314 8.487983e-314 1.273197e-313 6.941466e-310
 ```
 
 `allocVector()` abre espaço para um vetor sem limpar a memória que está lá.
@@ -844,6 +855,12 @@ Os problemas com o Rcpp que ele tenta resolver são:
 class: middle, center
 
 ## Exemplo 13: introCpp11.cpp
+
+---
+
+class: middle, center
+
+## Obrigado
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
